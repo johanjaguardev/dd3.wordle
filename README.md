@@ -44,8 +44,8 @@
 
 ## Resources
 
-- Word dictionary
-- Figma
+- [Word dictionary](https://gitlab.com/d2945/words/-/raw/main/words.txt)
+- [Figma](https://www.figma.com/file/1ItfWDdmg93m4yfj0BAvCn/DD3-Worlde?node-id=0%3A1)
 
 ## Notes
 
@@ -58,4 +58,4 @@
 
 For development speed and being a one-person technical test, I have decided to use trunk-based as a strategy, establishing different commits to the main branch
 
-[Trunk-based Development](https://trunkbaseddevelopment.
+[Trunk-based Development](https://trunkbaseddevelopment).
