@@ -8,7 +8,7 @@
    - Game board
    - Game result
 
-![Captured from Figma](public/wordle-overview.png)
+![Captured from Figma](public/wordle-overview.jpeg)
 
 2. Detect the first entrance and show the game instructions
 
