@@ -1,61 +1,61 @@
 # WORDLE - FRONTEND
 
-## Requerimientos
+## Requirements
 
-1. Maquetar el siguiente figma
-   Se compone de 3 vistas:
-   - Instrucciones del juego
-   - Tablero del juego
-   - Resultado del juego
+1. Layout the following Figma:
+   It consists of 3 views:
+   - Game instructions
+   - Game board
+   - Game result
 
-![*Captura obtenida de figma](public/wordle-overview.png)
+![Captured from Figma](public/wordle-overview.png)
 
-2. Detectar la primera vez de entrada y mostrar las instrucciones del juego
+2. Detect the first entrance and show the game instructions
 
-3. Seleccionar automáticamente una palabra de 5 letras del catálogo de palabras
+3. Automatically select a 5-letter word from the word catalog
 
-4. Al teclear o dar click en una letra, mostrarla en la primera caja vacía
+4. When typing or clicking on a letter, show it in the first empty box
 
-5. Al completar una fila de 5 letras, comparar las letras con la palabra seleccionada:
+5. When completing a row of 5 letters, compare the letters with the selected word:
 
-   - Letra correcta y en el mismo lugar: caja pintada de verde
-   - Letra correcta pero en diferente lugar: caja pintada de amarillo
-   - Letra incorrecta: caja pintada de gris
+   - Correct letter and in the same place: box painted green
+   - Correct letter but in a different place: box painted yellow
+   - Incorrect letter: box painted gray
 
-6. Si la palabra ingresada coincide con la seleccionada, mostrar modal de estadísticas y sumar un punto al contador de victorias y al contador de partidas
+6. If the entered word matches the selected one, show the statistics modal and add one point to the win counter and game counter
 
-7. Si el usuario no logra coincidir la palabra, mostrar modal de estadísticas, sumar un punto al contador de partidas y mostrar la palabra seleccionada
+7. If the user fails to match the word, show the statistics modal, add one point to the game counter, and show the selected word
 
-8. Cada 5 minutos, seleccionar una nueva palabra y limpiar el tablero sin repetirse
+8. Every 5 minutes, select a new word and clear the board without repeating
 
-9. Mostrar modal de instrucciones al dar click en icono
+9. Show instructions modal when clicking on the icon
 
-10. Mostrar modal de estadísticas al dar click en icono
+10. Show statistics modal when clicking on the icon
 
-11. Mostrar en modo oscuro al activar toggle
+11. Show in dark mode when activating the toggle
 
-12. Mostrar en modo claro al desactivar toggle
+12. Show in light mode when deactivating the toggle
 
-## Tecnologías recomendadas
+## Recommended technologies
 
 - React
 - Typescript
 - TailwindCSS
 
-## Recursos
+## Resources
 
-- Diccionario de palabras
+- Word dictionary
 - Figma
 
-## Notas
+## Notes
 
-- Subir código a un repositorio git y compartir enlace
-- Duración de la prueba: 2 días
+- Upload code to a git repository and share the link
+- Test duration: 2 days
 
-### A partir de aqui vienen mis notas personales
+### My personal notes start here
 
 ## Branch Strategy: Trunk-based
 
-Por velocidad de desarrollo y al ser solo una prueba tecnica unipersonal, he decidido usar trunk-based como estrategia, estableciendo diferentes commits al branch main
+For development speed and being a one-person technical test, I have decided to use trunk-based as a strategy, establishing different commits to the main branch
 
-[Trunk-based Development](https://trunkbaseddevelopment.com/)
+[Trunk-based Development](https://trunkbaseddevelopment.
