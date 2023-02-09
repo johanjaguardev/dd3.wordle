@@ -1,2 +1,22 @@
 $screen-size-desktop: 638px;
 $container-size-desktop: 768px;
+
+//color values
+$black: #000000;
+$whitesmoke: #f3f3f3;
+$gray-geyser: #dadce0;
+$gray-gunsmoke: #818181;
+$gray-stardust: #939b9f;
+
+$yellow-sahara: #ceb02c;
+$green-forest: #66a060;
+
+//semantic colors
+$header-bg: $whitesmoke;
+$header-border: $black;
+$header-buttons: $gray-gunsmoke;
+$box-bg: $gray-stardust;
+$exist-bg: $yellow-sahara;
+$exact-bg: $green-forest;
+$keyboard-bg: $gray-geyser;
+$used-bg: $gray-gunsmoke;

@@ -1,0 +1,13 @@
+@import "./variables";
+.board {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 638px;
+
+  &__row {
+    display: flex;
+    justify-content: row;
+  }
+}

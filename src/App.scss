@@ -2,5 +2,9 @@
 @import "sass/layout";
 
 body {
-  color: red;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
 }
