@@ -1,0 +1,24 @@
+@import "./variables";
+
+.keys {
+  background-color: $keyboard-bg;
+  border-radius: 15px;
+  margin-top: 40px;
+  padding: 30px 20px;
+  &__row {
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+
+  &__key {
+    background-color: $cell-bg;
+    border: none;
+    border-radius: 5px;
+    height: 51.05px;
+    margin: 12px;
+
+    width: 44.67px;
+  }
+}

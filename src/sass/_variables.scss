@@ -3,6 +3,7 @@ $container-size-desktop: 768px;
 
 //color values
 $black: #000000;
+$white: #ffffff;
 $whitesmoke: #f3f3f3;
 $gray-geyser: #dadce0;
 $gray-gunsmoke: #818181;
@@ -15,8 +16,9 @@ $green-forest: #66a060;
 $header-bg: $whitesmoke;
 $header-border: $black;
 $header-buttons: $gray-gunsmoke;
-$box-bg: $gray-stardust;
+$cell-bg: rgba($gray-stardust, 0.3);
+$cell-color: $white;
 $exist-bg: $yellow-sahara;
 $exact-bg: $green-forest;
-$keyboard-bg: $gray-geyser;
+$keyboard-bg: rgba($gray-geyser, 0.3);
 $used-bg: $gray-gunsmoke;

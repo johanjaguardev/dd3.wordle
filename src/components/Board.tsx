@@ -1,8 +1,9 @@
 import { useId } from "react";
 import { Header } from "./Header";
-import { Keyboard } from "./Keyboard";
+import { Keys } from "./Keys";
 import "./../sass/Board.scss";
 import { useState } from "react";
+import { Row } from "./Row";
 
 const Board = () => {
   const [grid, setGrid] = useState([
@@ -15,16 +16,13 @@ const Board = () => {
   return (
     <div className="board">
       <Header />
-      {grid.map((row) => (
-        <div className="board__row" key={useId()}>
-          {row.split("").map((cell) => (
-            <div className="board__cell" key={useId()}>
-              {cell}
-            </div>
-          ))}
-        </div>
-      ))}
-      <Keyboard />
+      <div className="board__grid">
+        {grid.map((word) => (
+          <Row word={word} key={useId()} />
+        ))}
+      </div>
+
+      <Keys />
     </div>
   );
 };

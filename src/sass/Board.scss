@@ -5,7 +5,9 @@
   flex-direction: column;
   justify-content: center;
   width: 638px;
-
+  &__grid {
+    margin-top: 40px;
+  }
   &__row {
     display: flex;
     justify-content: row;
