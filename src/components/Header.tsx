@@ -1,7 +1,7 @@
 import "./../sass/Header.scss";
-import questionSVG from "./../../public/question.svg";
-import barsSVG from "./../../public/bars.svg";
-import daySVG from "./../../public/day.svg";
+import questionSVG from "./../assets/question.svg";
+import barsSVG from "./../assets/bars.svg";
+import daySVG from "./../assets/day.svg";
 const Header = () => {
   return (
     <div className="header">
