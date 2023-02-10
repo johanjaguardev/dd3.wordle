@@ -16,9 +16,26 @@
     background-color: $cell-bg;
     border: none;
     border-radius: 5px;
+    color: $keyboard-color;
+    cursor: pointer;
+    font-weight: bold;
     height: 51.05px;
     margin: 12px;
-
     width: 44.67px;
+
+    &.not-exist {
+      background-color: $used-bg;
+      color: $keyboard-color-alt;
+    }
+
+    &.exist {
+      background-color: $exist-bg;
+      color: $keyboard-color-alt;
+    }
+
+    &.ok {
+      background-color: $exact-bg;
+      color: $keyboard-color-alt;
+    }
   }
 }
