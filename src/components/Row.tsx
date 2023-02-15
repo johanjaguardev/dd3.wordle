@@ -8,9 +8,10 @@ type Props = {
 const Row: React.FC<Props> = ({ word }) => {
   return (
     <div className="row">
-      {word.map((cell, index) => (
-        <Cell letter={cell.key} key={cell.index + index} />
-      ))}
+      {word.map((cell, index) => {
+        console.log(cell, index);
+        return <Cell letter={cell.key} key={useId()} />;
+      })}
     </div>
   );
 };

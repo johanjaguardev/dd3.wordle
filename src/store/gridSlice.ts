@@ -54,12 +54,13 @@ const gridSlice = createSlice({
       };
       return {
         ...state,
-        row: updatedRows,
+        rows: updatedRows,
       };
     },
   },
 });
 
 const gridReducer = gridSlice.reducer;
-const updateRow = gridSlice.actions;
-export { gridSlice, updateRow, gridReducer, type RootState };
+const { updateRow } = gridSlice.actions;
+export type { RootState };
+export { gridSlice, updateRow, gridReducer };
