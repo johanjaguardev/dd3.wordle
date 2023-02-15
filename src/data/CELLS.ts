@@ -1,6 +1,6 @@
-import { Cell } from "../types/Cell.t";
+import { TCell } from "../types/Cell.t";
 
-const CELLS: Cell[] = [
+const CELLS: TCell[] = [
   { index: 0, key: "Q", status: "not set", row: 1 },
   { index: 1, key: "W", status: "not set", row: 1 },
   { index: 2, key: "E", status: "not set", row: 1 },
