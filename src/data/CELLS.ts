@@ -28,7 +28,7 @@ const CELLS: Cell[] = [
   { index: 24, key: "B", status: "not set", row: 3 },
   { index: 25, key: "N", status: "not set", row: 3 },
   { index: 26, key: "M", status: "not set", row: 3 },
-  { index: 27, key: "backspace", status: "not set", row: 3 },
+  { index: 27, key: "BACKSPACE", status: "not set", row: 3 },
 ];
 
 export { CELLS };
