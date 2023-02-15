@@ -1,6 +1,7 @@
-type Cell = {
+type TCell = {
+  index: number;
   key: string;
   status: "ok" | "exist" | "not exist" | "not set";
   row: number;
 };
-export type { Cell };
+export type { TCell };

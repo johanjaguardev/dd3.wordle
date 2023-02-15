@@ -1,6 +1,6 @@
 import "./../sass/Keys.scss";
 import backspaceSVG from "./../assets/backspace.svg";
-import { Cell } from "../types/Cell.t";
+import { TCell } from "../types/Cell.t";
 import { RootState } from "./../store/cellsSlice";
 import { useAppSelector, useAppDispatch } from "./../store/hooks";
 import { updateCell } from "./../store/cellsSlice";
@@ -11,8 +11,8 @@ const drawRow = (row: number) => {
   return (
     <div className="keys__row" key={`keys__row-${row}`}>
       {keys
-        .filter((item: Cell) => item.row === row)
-        .map((item: Cell) => (
+        .filter((item: TCell) => item.row === row)
+        .map((item: TCell) => (
           <button
             key={item.key}
             value={item.key}
