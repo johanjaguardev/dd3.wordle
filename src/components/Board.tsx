@@ -30,40 +30,67 @@ const Board = () => {
     });
   };
   useEffect(() => {
-    setRandomWord(WORDLIST[Math.floor(Math.random() * WORDLIST.length)]);
+    setRandomWord(
+      WORDLIST[Math.floor(Math.random() * WORDLIST.length)].toUpperCase()
+    );
   }, []);
 
   useEffect(() => {
     const cellIndex = userInput.count - 1;
-    if (userInput.count === 6) {
-    } else {
-      //dispatch here
-      const updatedCells = [...grid.rows[grid.current].cells];
 
-      let cellState =
-        grid.rows[grid.current].cells[cellIndex] === undefined
-          ? ({
-              index: -1,
-              key: "",
-              row: -1,
-              status: "not set",
-            } as TCell)
-          : grid.rows[grid.current].cells[cellIndex];
-      cellState = {
-        index: cellState.index + cellIndex,
-        key: userInput.key,
-        row: -1,
-        status: cellState.status,
-      };
-      updatedCells[cellIndex] = cellState;
+    //dispatch here
+    let updatedCells = [...grid.rows[grid.current].cells];
 
-      const updatedRow: TRow = {
-        index: grid.current,
-        cells: updatedCells,
-      };
+    let cellState =
+      grid.rows[grid.current].cells[cellIndex] === undefined
+        ? ({
+            index: -1,
+            key: "",
+            row: -1,
+            status: "not set",
+          } as TCell)
+        : grid.rows[grid.current].cells[cellIndex];
+    cellState = {
+      index: cellState.index + cellIndex,
+      key: userInput.key,
+      row: -1,
+      status: cellState.status,
+    };
 
-      dispatch(updateRow(updatedRow));
+    updatedCells[cellIndex] = cellState;
+    if (userInput.count === 5) {
+      let userWord = "";
+      const newCells = updatedCells.map((obj, index) => {
+        const newCell = { ...obj };
+        let cellToUpdate = grid.rows[grid.current].cells[index];
+        userWord += obj.key;
+        cellToUpdate = {
+          index: obj.index + index,
+          key: obj.key,
+          row: -1,
+          status:
+            obj.key === randomWord[index]
+              ? "ok"
+              : randomWord.includes(obj.key)
+              ? "exist"
+              : "not exist",
+        };
+        return cellToUpdate;
+      });
+      updatedCells = newCells;
     }
+    // here I will update the status of the cells in the latest count 5
+
+    const updatedRow: TRow = {
+      index: grid.current,
+      cells: updatedCells,
+    };
+
+    dispatch(updateRow(updatedRow));
+    console.log(grid);
+    // if (userInput.count === 5) {
+
+    // }
   }, [userInput]);
   return (
     <div className="board">

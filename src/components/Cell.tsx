@@ -2,9 +2,14 @@ import "./../sass/Cell.scss";
 
 type Props = {
   letter: string;
+  status: string;
 };
-const Cell: React.FC<Props> = ({ letter }) => {
-  return <div className="cell">{letter === "-" ? "" : letter}</div>;
+const Cell: React.FC<Props> = ({ letter, status }) => {
+  return (
+    <div className={`cell ${status.replace(" ", "-")}`}>
+      {letter === "-" ? "" : letter}
+    </div>
+  );
 };
 
 export { Cell };

@@ -12,5 +12,20 @@
   height: 76px;
   margin: 12px 12px 0 0;
   text-align: center;
+  transition: ease-in-out 1s all;
   width: 76px;
+  &.not-exist {
+    background-color: $used-bg;
+    color: $keyboard-color-alt;
+  }
+
+  &.exist {
+    background-color: $exist-bg;
+    color: $keyboard-color-alt;
+  }
+
+  &.ok {
+    background-color: $exact-bg;
+    color: $keyboard-color-alt;
+  }
 }
