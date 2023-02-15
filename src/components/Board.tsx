@@ -1,6 +1,6 @@
 import { useId } from "react";
 import { Header } from "./Header";
-import { Keys } from "./Keys";
+import { Keyboard } from "./Keyboard";
 import "./../sass/Board.scss";
 import { useState } from "react";
 import { Row } from "./Row";
@@ -22,7 +22,7 @@ const Board = () => {
         ))}
       </div>
 
-      <Keys />
+      <Keyboard />
     </div>
   );
 };
