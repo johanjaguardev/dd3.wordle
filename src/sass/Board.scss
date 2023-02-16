@@ -1,9 +1,11 @@
 @import "./variables";
 .board {
   align-items: center;
+  background-color: $board-bg;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  transition: 1s ease-in-out background-color;
   width: 638px;
   &__grid {
     margin-top: 40px;
@@ -11,5 +13,9 @@
   &__row {
     display: flex;
     justify-content: row;
+  }
+
+  &.dark {
+    background-color: $board-bg-dark;
   }
 }

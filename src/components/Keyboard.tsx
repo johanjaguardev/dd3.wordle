@@ -2,20 +2,20 @@ import "./../sass/Keys.scss";
 import backspaceSVG from "./../assets/backspace.svg";
 import { TCell } from "../types/Cell.t";
 import { RootState } from "./../store/cellsSlice";
-import { useAppSelector, useAppDispatch } from "./../store/hooks";
-import { updateCell } from "./../store/cellsSlice";
+import { useSelector } from "react-redux/es/hooks/useSelector";
 type Props = {
   handleButton: (key: string) => void;
 };
 
 const Keyboard: React.FC<Props> = ({ handleButton }) => {
+  const themeChoice = useSelector((state: RootState) => state.theme);
   const drawRow = (row: number) => {
-    const keys = useAppSelector((state: RootState) => state.cells.items);
-
-    // console.log(keys);
-
+    const keys = useSelector((state: RootState) => state.cells.cells);
     return (
-      <div className="keys__row" key={`keys__row-${row}`}>
+      <div
+        className={`keys__row ${themeChoice ? "light" : "dark"}`}
+        key={`keys__row-${row}`}
+      >
         {keys
           .filter((item: TCell) => item.row === row)
           .map((item: TCell) => (
@@ -36,7 +36,7 @@ const Keyboard: React.FC<Props> = ({ handleButton }) => {
     );
   };
   return (
-    <div className="keys">
+    <div className={`keys ${themeChoice ? "light" : "dark"}`}>
       {drawRow(1)}
       {drawRow(2)}
       {drawRow(3)}

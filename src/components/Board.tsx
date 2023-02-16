@@ -15,7 +15,9 @@ import { TCell } from "../types/Cell.t";
 
 const Board = () => {
   const grid = useSelector((state: RootState) => state.grid);
-  const keys = useSelector((state: RootState) => state.cells.items);
+  const keys = useSelector((state: RootState) => state.cells.cells);
+  const themeChoice = useSelector((state: RootState) => state.theme);
+
   const dispatch = useDispatch();
   const [randomWord, setRandomWord] = useState("");
   const [userInput, setUserInput] = useState({
@@ -77,6 +79,7 @@ const Board = () => {
   };
 
   useEffect(() => {
+    console.log(themeChoice);
     setRandomWord(
       WORDLIST[Math.floor(Math.random() * WORDLIST.length)].toUpperCase()
     );
@@ -115,7 +118,7 @@ const Board = () => {
   }, [userInput]);
 
   return (
-    <div className="board">
+    <div className={`board ${themeChoice ? "light" : "dark"}`}>
       <Header />
       <div className="board__grid">
         {grid.rows.map((row) => (

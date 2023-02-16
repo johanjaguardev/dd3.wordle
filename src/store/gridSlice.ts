@@ -67,4 +67,5 @@ const { updateRow } = gridSlice.actions;
 const gridReducer = gridSlice.reducer;
 
 export { gridSlice, updateRow, gridReducer };
+export type { RootState };
 export type { GridState };

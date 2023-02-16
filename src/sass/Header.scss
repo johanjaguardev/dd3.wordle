@@ -1,17 +1,19 @@
 @import "./variables";
 .header {
   align-items: center;
-  background-color: $header-bg;
+  background: $header-bg;
   border: 1px solid $header-border;
   border-radius: 15px;
   box-shadow: 0px 4px 4px rgba($header-border, 0.25);
   box-sizing: border-box;
+  color: $header-color;
   display: flex;
   flex-direction: row;
   height: 84px;
   gap: 12px;
   justify-content: center;
   padding: 0 12px;
+  transition: 1s ease-in-out all;
   width: 100%;
 
   h1 {
@@ -27,6 +29,13 @@
   }
 
   &__icon {
+    cursor: pointer;
     height: 27px;
+  }
+
+  &.dark {
+    background: $header-bg-dark;
+    border: 1px solid transparent;
+    color: $header-color-dark;
   }
 }
