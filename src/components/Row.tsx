@@ -9,7 +9,14 @@ const Row: React.FC<Props> = ({ word }) => {
   return (
     <div className="row">
       {word.map((cell, index) => {
-        return <Cell letter={cell.key} status={cell.status} key={useId()} />;
+        return (
+          <Cell
+            letter={cell.key}
+            status={cell.status}
+            column={index}
+            key={useId()}
+          />
+        );
       })}
     </div>
   );

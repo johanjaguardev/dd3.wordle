@@ -1,5 +1,6 @@
 @import "./variables";
 .cell {
+  $time-delay: 0.5s;
   align-items: center;
   background-color: $cell-bg;
   border-radius: 5px;
@@ -12,8 +13,29 @@
   height: 76px;
   margin: 12px 12px 0 0;
   text-align: center;
-  transition: ease-in-out 1s all;
+  transition: ease-in-out $time-delay all;
   width: 76px;
+
+  &.column-0 {
+    transition-delay: 0 * $time-delay;
+  }
+
+  &.column-1 {
+    transition-delay: 1 * $time-delay;
+  }
+
+  &.column-2 {
+    transition-delay: 2 * $time-delay;
+  }
+
+  &.column-3 {
+    transition-delay: 3 * $time-delay;
+  }
+
+  &.column-4 {
+    transition-delay: 4 * $time-delay;
+  }
+
   &.not-exist {
     background-color: $used-bg;
     color: $keyboard-color-alt;

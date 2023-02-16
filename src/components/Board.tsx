@@ -32,6 +32,15 @@ const Board = () => {
         };
       });
     }
+
+    if (key === "BACKSPACE") {
+      setUserInput((previous) => {
+        return {
+          count: previous.count === 5 ? 0 : previous.count - 1,
+          key: key,
+        };
+      });
+    }
   };
 
   const checkCells = (updatedCells: TCell[]) => {
@@ -51,8 +60,6 @@ const Board = () => {
       };
 
       let keyToUpdate = { ...keys.filter((k: TCell) => k.key === obj.key)[0] };
-      // keyToUpdate.status = keyToUpdate.status === 'ok' ? 'ok': keyToUpdate.status === 'exist' && cellToUpdate.status !== 'ok' : cellToUpdate.status;
-
       keyToUpdate.status =
         cellToUpdate.status === "ok"
           ? "ok"
