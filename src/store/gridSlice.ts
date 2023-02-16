@@ -62,5 +62,5 @@ const gridSlice = createSlice({
 
 const gridReducer = gridSlice.reducer;
 const { updateRow } = gridSlice.actions;
-export type { RootState };
-export { gridSlice, updateRow, gridReducer };
+
+export { gridSlice, updateRow, gridReducer, type RootState };

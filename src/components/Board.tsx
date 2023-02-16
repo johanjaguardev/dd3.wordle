@@ -10,10 +10,12 @@ import { TRow } from "../types/Row.t";
 import type { RootState } from "./../store/gridSlice";
 import { KeyboardListener } from "./KeyboardListener";
 import { updateRow } from "./../store/gridSlice";
+import { updateCell } from "../store/cellsSlice";
 import { TCell } from "../types/Cell.t";
 
 const Board = () => {
   const grid = useSelector((state: RootState) => state.grid);
+  const keys = useSelector((state: RootState) => state.cells.items);
   const dispatch = useDispatch();
   const [randomWord, setRandomWord] = useState("");
   const [userInput, setUserInput] = useState({
@@ -22,13 +24,46 @@ const Board = () => {
   });
 
   const handleInput = (key: string) => {
-    setUserInput((previous) => {
-      return {
-        count: previous.count === 5 ? 0 : previous.count + 1,
-        key: key,
+    if (key !== "ENTER" && key !== "BACKSPACE") {
+      setUserInput((previous) => {
+        return {
+          count: previous.count === 5 ? 0 : previous.count + 1,
+          key: key,
+        };
+      });
+    }
+  };
+
+  const checkCells = (updatedCells: TCell[]) => {
+    let userWord = "";
+    return updatedCells.map((obj, index) => {
+      let cellToUpdate: TCell = grid.rows[grid.current].cells[index];
+      userWord += obj.key;
+      cellToUpdate = {
+        index: obj.index + index,
+        key: obj.key,
+        row: -1,
+        status: randomWord.includes(obj.key)
+          ? "exist"
+          : obj.key === randomWord[index]
+          ? "ok"
+          : "not exist",
       };
+
+      let keyToUpdate = { ...keys.filter((k: TCell) => k.key === obj.key)[0] };
+      // keyToUpdate.status = keyToUpdate.status === 'ok' ? 'ok': keyToUpdate.status === 'exist' && cellToUpdate.status !== 'ok' : cellToUpdate.status;
+
+      keyToUpdate.status =
+        cellToUpdate.status === "ok"
+          ? "ok"
+          : cellToUpdate.status === "exist" && keyToUpdate.status !== "ok"
+          ? "exist"
+          : "not exist";
+      dispatch(updateCell(keyToUpdate));
+      return cellToUpdate;
     });
   };
+
   useEffect(() => {
     setRandomWord(
       WORDLIST[Math.floor(Math.random() * WORDLIST.length)].toUpperCase()
@@ -39,7 +74,7 @@ const Board = () => {
     const cellIndex = userInput.count - 1;
 
     //dispatch here
-    let updatedCells = [...grid.rows[grid.current].cells];
+    let updatedCells: TCell[] = [...grid.rows[grid.current].cells];
 
     let cellState =
       grid.rows[grid.current].cells[cellIndex] === undefined
@@ -58,28 +93,8 @@ const Board = () => {
     };
 
     updatedCells[cellIndex] = cellState;
-    if (userInput.count === 5) {
-      let userWord = "";
-      const newCells = updatedCells.map((obj, index) => {
-        const newCell = { ...obj };
-        let cellToUpdate = grid.rows[grid.current].cells[index];
-        userWord += obj.key;
-        cellToUpdate = {
-          index: obj.index + index,
-          key: obj.key,
-          row: -1,
-          status:
-            obj.key === randomWord[index]
-              ? "ok"
-              : randomWord.includes(obj.key)
-              ? "exist"
-              : "not exist",
-        };
-        return cellToUpdate;
-      });
-      updatedCells = newCells;
-    }
-    // here I will update the status of the cells in the latest count 5
+    updatedCells =
+      userInput.count === 5 ? checkCells(updatedCells) : updatedCells;
 
     const updatedRow: TRow = {
       index: grid.current,
@@ -87,11 +102,8 @@ const Board = () => {
     };
 
     dispatch(updateRow(updatedRow));
-    console.log(grid);
-    // if (userInput.count === 5) {
-
-    // }
   }, [userInput]);
+
   return (
     <div className="board">
       <Header />

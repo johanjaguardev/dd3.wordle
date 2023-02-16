@@ -38,5 +38,6 @@ const cellsSlice = createSlice({
 });
 
 const cellsReducer = cellsSlice.reducer;
-const updateCell = cellsSlice.actions;
-export { cellsSlice, updateCell, cellsReducer, type RootState };
+const { updateCell } = cellsSlice.actions;
+export type { RootState };
+export { cellsSlice, updateCell, cellsReducer };
