@@ -36,7 +36,7 @@ const Board = () => {
     if (key === "BACKSPACE") {
       setUserInput((previous) => {
         return {
-          count: previous.count === 5 ? 0 : previous.count - 1,
+          count: previous.count === 0 ? 0 : previous.count - 1,
           key: "BACKSPACE",
         };
       });
