@@ -1,13 +1,13 @@
-import { createSlice } from "@reduxjs/toolkit";
-import type { PayloadAction } from "@reduxjs/toolkit";
-import type { RootState } from "./store";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TCell } from "../types/Cell.t";
 import { TRow } from "../types/Row.t";
+import { RootState } from "./store";
 
 interface GridState {
   current: number;
   rows: TRow[];
 }
+
 const emptyCell: TCell = {
   index: 100,
   key: "-",
@@ -39,7 +39,7 @@ const initialState: GridState = {
       cells: [emptyCell, emptyCell, emptyCell, emptyCell, emptyCell],
     },
   ],
-} as GridState;
+};
 
 const gridSlice = createSlice({
   name: "grid",
@@ -63,7 +63,8 @@ const gridSlice = createSlice({
   },
 });
 
-const gridReducer = gridSlice.reducer;
 const { updateRow } = gridSlice.actions;
+const gridReducer = gridSlice.reducer;
 
-export { gridSlice, updateRow, gridReducer, type RootState };
+export { gridSlice, updateRow, gridReducer };
+export type { GridState };

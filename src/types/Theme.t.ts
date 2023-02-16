@@ -1,4 +1,3 @@
-type Theme = {
-  theme: "light" | "dark";
-};
-export type { Theme };
+type TThemeisLight = boolean;
+
+export type { TThemeisLight };
