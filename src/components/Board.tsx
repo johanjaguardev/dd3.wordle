@@ -27,7 +27,7 @@ const Board = () => {
     if (key !== "ENTER" && key !== "BACKSPACE") {
       setUserInput((previous) => {
         return {
-          count: previous.count === 5 ? 0 : previous.count + 1,
+          count: previous.count === 5 ? 1 : previous.count + 1,
           key: key,
         };
       });
@@ -42,8 +42,6 @@ const Board = () => {
       });
     }
   };
-
-  const addCell = () => {};
 
   const checkCells = (updatedCells: TCell[]) => {
     let userWord = "";
@@ -83,10 +81,7 @@ const Board = () => {
     console.log(userInput);
     const cellIndex =
       userInput.key !== "BACKSPACE" ? userInput.count - 1 : userInput.count;
-
-    //dispatch here
     let updatedCells: TCell[] = [...grid.rows[grid.current].cells];
-
     let cellState =
       grid.rows[grid.current].cells[cellIndex] === undefined
         ? ({
@@ -108,10 +103,9 @@ const Board = () => {
       userInput.count === 5 ? checkCells(updatedCells) : updatedCells;
 
     const updatedRow: TRow = {
-      index: grid.current,
+      index: cellIndex,
       cells: updatedCells,
     };
-
     dispatch(updateRow(updatedRow));
   }, [userInput]);
 
@@ -120,7 +114,7 @@ const Board = () => {
       <Header />
       <div className="board__grid">
         {grid.rows.map((row) => (
-          <Row word={row.cells} key={row.index} />
+          <Row word={row.cells} key={useId()} />
         ))}
       </div>
       <KeyboardListener onKeyPress={handleInput} />

@@ -47,13 +47,16 @@ const gridSlice = createSlice({
   reducers: {
     updateRow: (state, action: PayloadAction<TRow>) => {
       const { index, cells } = action.payload;
+      const currentRow = state.current;
       const updatedRows = [...state.rows];
-      updatedRows[index] = {
+      updatedRows[currentRow] = {
         index: index,
         cells: cells,
       };
+
       return {
         ...state,
+        current: index === 4 ? currentRow + 1 : currentRow,
         rows: updatedRows,
       };
     },
