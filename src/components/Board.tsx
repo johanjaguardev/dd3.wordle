@@ -37,11 +37,13 @@ const Board = () => {
       setUserInput((previous) => {
         return {
           count: previous.count === 5 ? 0 : previous.count - 1,
-          key: key,
+          key: "BACKSPACE",
         };
       });
     }
   };
+
+  const addCell = () => {};
 
   const checkCells = (updatedCells: TCell[]) => {
     let userWord = "";
@@ -78,7 +80,9 @@ const Board = () => {
   }, []);
 
   useEffect(() => {
-    const cellIndex = userInput.count - 1;
+    console.log(userInput);
+    const cellIndex =
+      userInput.key !== "BACKSPACE" ? userInput.count - 1 : userInput.count;
 
     //dispatch here
     let updatedCells: TCell[] = [...grid.rows[grid.current].cells];
@@ -87,14 +91,14 @@ const Board = () => {
       grid.rows[grid.current].cells[cellIndex] === undefined
         ? ({
             index: -1,
-            key: "",
+            key: userInput.key !== "BACKSPACE" ? userInput.key : "-",
             row: -1,
             status: "not set",
           } as TCell)
         : grid.rows[grid.current].cells[cellIndex];
     cellState = {
       index: cellState.index + cellIndex,
-      key: userInput.key,
+      key: userInput.key !== "BACKSPACE" ? userInput.key : "-",
       row: -1,
       status: cellState.status,
     };
