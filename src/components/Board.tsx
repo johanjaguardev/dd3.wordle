@@ -45,18 +45,19 @@ const Board = () => {
 
   const checkCells = (updatedCells: TCell[]) => {
     let userWord = "";
-    return updatedCells.map((obj, index) => {
+    let newCells = updatedCells.map((obj, index) => {
       let cellToUpdate: TCell = grid.rows[grid.current].cells[index];
       userWord += obj.key;
       cellToUpdate = {
         index: obj.index + index,
         key: obj.key,
         row: -1,
-        status: randomWord.includes(obj.key)
-          ? "exist"
-          : obj.key === randomWord[index]
-          ? "ok"
-          : "not exist",
+        status:
+          obj.key === randomWord[index]
+            ? "ok"
+            : randomWord.includes(obj.key)
+            ? "exist"
+            : "not exist",
       };
 
       let keyToUpdate = { ...keys.filter((k: TCell) => k.key === obj.key)[0] };
@@ -69,6 +70,10 @@ const Board = () => {
       dispatch(updateCell(keyToUpdate));
       return cellToUpdate;
     });
+    console.log(
+      `palabra a adivinar: ${randomWord} - palabra de usuario: ${userWord}`
+    );
+    return newCells;
   };
 
   useEffect(() => {
