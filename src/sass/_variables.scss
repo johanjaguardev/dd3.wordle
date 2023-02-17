@@ -9,14 +9,15 @@ $gray-charade: #262b3c;
 $gray-geyser: #dadce0;
 $gray-gunsmoke: #818181;
 $gray-stardust: #939b9f;
-
-$yellow-sahara: #ceb02c;
 $green-forest: #66a060;
+$purple-dolphin: #565f7e;
+$yellow-sahara: #ceb02c;
 
 //semantic colors
 $board-bg: $white;
 $board-bg-dark: $gray-charade;
-$cell-bg: rgba($gray-stardust, 0.3);
+$cell-bg: rgba($gray-stardust, 30%);
+$cell-bg-dark: rgba($gray-stardust, 20%);
 $cell-color: $black;
 $cell-color-alt: $white;
 $exist-bg: $yellow-sahara;
@@ -27,7 +28,9 @@ $header-border: $black;
 $header-buttons: $gray-gunsmoke;
 $header-color: $black;
 $header-color-dark: $white;
-$keyboard-bg: rgba($gray-geyser, 0.3);
+$keyboard-bg: rgba($gray-geyser, 3%);
 $keyboard-color: $black;
 $keyboard-color-alt: $white;
+
+$keyboard-cell-dark: $purple-dolphin;
 $used-bg: $gray-gunsmoke;

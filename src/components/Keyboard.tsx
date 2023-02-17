@@ -1,5 +1,6 @@
 import "./../sass/Keys.scss";
 import backspaceSVG from "./../assets/backspace.svg";
+import backspaceWhiteSVG from "./../assets/backspace-white.svg";
 import { TCell } from "../types/Cell.t";
 import { RootState } from "./../store/cellsSlice";
 import { useSelector } from "react-redux/es/hooks/useSelector";
@@ -26,7 +27,10 @@ const Keyboard: React.FC<Props> = ({ handleButton }) => {
               onClick={() => handleButton(item.key)}
             >
               {item.key === "BACKSPACE" ? (
-                <img src={backspaceSVG} alt="backspace Key" />
+                <img
+                  src={`${themeChoice ? backspaceSVG : backspaceWhiteSVG}`}
+                  alt="backspace Key"
+                />
               ) : (
                 item.key
               )}

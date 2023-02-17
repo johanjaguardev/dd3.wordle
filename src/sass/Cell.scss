@@ -15,7 +15,10 @@
   text-align: center;
   transition: ease-in-out $time-delay all;
   width: 76px;
-
+  &.dark {
+    background-color: $cell-bg-dark;
+    color: $keyboard-color-alt;
+  }
   &.column-0 {
     transition-delay: 0 * $time-delay;
   }
