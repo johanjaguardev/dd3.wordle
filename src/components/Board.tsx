@@ -1,22 +1,23 @@
-import { useEffect, useId } from "react";
+import { useEffect, useId, useState, Fragment } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import { Header } from "./Header";
 import { Keyboard } from "./Keyboard";
 import "./../sass/Board.scss";
 import { WORDLIST } from "../data/WORDLIST";
-import { useSelector, useDispatch } from "react-redux";
-import { useState } from "react";
-import { Row } from "./Row";
-import { TRow } from "../types/Row.t";
-import type { RootState } from "./../store/gridSlice";
-import { KeyboardListener } from "./KeyboardListener";
+import type { RootState } from "../store/store";
 import { updateRow } from "./../store/gridSlice";
-import { updateCell } from "../store/cellsSlice";
 import { TCell } from "../types/Cell.t";
+import { checkCells } from "../utils/checkCells";
+import { Row } from "./Row";
+import { KeyboardListener } from "./KeyboardListener";
+import { Instructions } from "./Instructions";
+import { Results } from "./Results";
 
 const Board = () => {
   const grid = useSelector((state: RootState) => state.grid);
   const keys = useSelector((state: RootState) => state.cells.cells);
   const themeChoice = useSelector((state: RootState) => state.theme);
+  const windowState = useSelector((state: RootState) => state.window);
 
   const dispatch = useDispatch();
   const [randomWord, setRandomWord] = useState("");
@@ -45,41 +46,15 @@ const Board = () => {
     }
   };
 
-  const checkCells = (updatedCells: TCell[]) => {
-    let userWord = "";
-    let newCells = updatedCells.map((obj, index) => {
-      let cellToUpdate: TCell = grid.rows[grid.current].cells[index];
-      userWord += obj.key;
-      cellToUpdate = {
-        index: obj.index + index,
-        key: obj.key,
-        row: -1,
-        status:
-          obj.key === randomWord[index]
-            ? "ok"
-            : randomWord.includes(obj.key)
-            ? "exist"
-            : "not exist",
-      };
+  const handleResulsClick = () => {
+    console.log("results");
+  };
 
-      let keyToUpdate = { ...keys.filter((k: TCell) => k.key === obj.key)[0] };
-      keyToUpdate.status =
-        cellToUpdate.status === "ok"
-          ? "ok"
-          : cellToUpdate.status === "exist" && keyToUpdate.status !== "ok"
-          ? "exist"
-          : "not exist";
-      dispatch(updateCell(keyToUpdate));
-      return cellToUpdate;
-    });
-    console.log(
-      `palabra a adivinar: ${randomWord} - palabra de usuario: ${userWord}`
-    );
-    return newCells;
+  const handleInstructionsClick = () => {
+    console.log("instructions");
   };
 
   useEffect(() => {
-    console.log(themeChoice);
     setRandomWord(
       WORDLIST[Math.floor(Math.random() * WORDLIST.length)].toUpperCase()
     );
@@ -107,26 +82,34 @@ const Board = () => {
     };
 
     updatedCells[cellIndex] = cellState;
-    updatedCells =
-      userInput.count === 5 ? checkCells(updatedCells) : updatedCells;
 
-    const updatedRow: TRow = {
-      index: cellIndex,
-      cells: updatedCells,
-    };
-    dispatch(updateRow(updatedRow));
+    dispatch(
+      updateRow({
+        index: userInput.count === 5 ? cellIndex - 1 : cellIndex,
+        cells:
+          userInput.count === 5
+            ? checkCells(grid, keys, dispatch, randomWord, [
+                ...grid.rows[grid.current].cells,
+              ])
+            : updatedCells,
+      })
+    );
   }, [userInput]);
 
   return (
     <div className={`board ${themeChoice ? "light" : "dark"}`}>
-      <Header />
-      <div className="board__grid">
-        {grid.rows.map((row) => (
-          <Row word={row.cells} key={useId()} />
-        ))}
-      </div>
-      <KeyboardListener onKeyPress={handleInput} />
-      <Keyboard handleButton={handleInput} />
+      <Fragment>
+        <Header />
+        <div className="board__grid">
+          {grid.rows.map((row) => (
+            <Row word={row.cells} key={useId()} />
+          ))}
+        </div>
+        <KeyboardListener onKeyPress={handleInput} />
+        <Keyboard handleButton={handleInput} />
+      </Fragment>
+      <Instructions />
+      <Results />
     </div>
   );
 };

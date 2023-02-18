@@ -1,8 +1,5 @@
 import "./App.scss";
-import { Routes, Route } from "react-router-dom";
 import { Board } from "./components/Board";
-import { Instructions } from "./components/Instructions";
-import { Results } from "./components/Result";
 import { useEffect } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { RootState } from "./store/themeSlice";
@@ -18,13 +15,7 @@ const App: React.FC = () => {
     document.body.classList.remove(`${themeChoice ? "dark" : "light"}`);
   }, [themeChoice]);
 
-  return (
-    <Routes>
-      <Route path="/" element={<Board />} />
-      <Route path="/results" element={<Results />} />
-      <Route path="/instructions" element={<Instructions />} />
-    </Routes>
-  );
+  return <Board />;
 };
 
 export default App;

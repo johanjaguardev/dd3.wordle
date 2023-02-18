@@ -1,5 +1,4 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { RootState } from "./store";
+import { createSlice } from "@reduxjs/toolkit";
 import { TThemeisLight } from "../types/Theme.t";
 
 const initialState: TThemeisLight = true;
@@ -16,4 +15,3 @@ const themeSlice = createSlice({
 
 export const { toggleTheme } = themeSlice.actions;
 export const themeReducer = themeSlice.reducer;
-export type { RootState };

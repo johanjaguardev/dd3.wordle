@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TCell } from "../types/Cell.t";
 import { TRow } from "../types/Row.t";
-import { RootState } from "./store";
 
 interface GridState {
   current: number;
@@ -67,5 +66,4 @@ const { updateRow } = gridSlice.actions;
 const gridReducer = gridSlice.reducer;
 
 export { gridSlice, updateRow, gridReducer };
-export type { RootState };
 export type { GridState };

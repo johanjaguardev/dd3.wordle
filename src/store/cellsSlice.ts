@@ -1,7 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { TCell } from "../types/Cell.t";
 import { CELLS } from "../data/CELLS";
-import type { RootState } from "./store";
 
 interface CellsState {
   cells: TCell[];
@@ -28,4 +27,3 @@ const { updateCell } = cellsSlice.actions;
 const cellsReducer = cellsSlice.reducer;
 
 export { updateCell, cellsReducer };
-export type { RootState };

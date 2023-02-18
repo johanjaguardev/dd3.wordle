@@ -1,0 +1,53 @@
+@import "./variables";
+.instructions {
+  align-items: center;
+  background-color: $wrapper-bg;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  left: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+
+  &.hidden {
+    display: none;
+  }
+
+  &__wrapper {
+    align-items: center;
+    background-color: $wrapper-inner-bg;
+    border: 1px solid $wrapper-border-color;
+    border-radius: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 50px;
+  }
+
+  &__img {
+    width: 85%;
+  }
+
+  &__button {
+    background-color: $wrapper-button-bg;
+    border: none;
+    border-radius: 5px;
+    color: $wrapper-button-color;
+    cursor: pointer;
+    font-size: 28px;
+    font-weight: 800;
+    height: 50px;
+    line-height: 33px;
+    margin-top: 30px;
+    width: 263px;
+  }
+  &.dark {
+    background-color: $wrapper-bg-dark;
+
+    .instructions__wrapper {
+      background-color: $wrapper-inner-bg-dark;
+      border: 1px solid $wrapper-border-color-dark;
+    }
+  }
+}
