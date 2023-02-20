@@ -92,6 +92,10 @@ const Board = () => {
       })
     );
     if (userInput.count === 5) {
+      setUserInput({
+        count: 0,
+        key: "-",
+      });
       dispatch(incrementRow());
     }
   }, [userInput]);
