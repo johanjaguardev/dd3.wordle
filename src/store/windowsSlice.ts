@@ -3,9 +3,9 @@ import { createSlice } from "@reduxjs/toolkit";
 import { TWindow } from "../types/Window.t";
 
 const initialState: TWindow = {
-  board: true,
+  board: false,
   results: false,
-  instructions: false,
+  instructions: true,
 };
 
 const windowsSlice = createSlice({

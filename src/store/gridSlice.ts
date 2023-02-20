@@ -55,15 +55,22 @@ const gridSlice = createSlice({
 
       return {
         ...state,
-        current: index === 4 ? currentRow + 1 : currentRow,
+        current: currentRow,
         rows: updatedRows,
+      };
+    },
+
+    incrementRow: (state) => {
+      return {
+        ...state,
+        current: state.current + 1,
       };
     },
   },
 });
 
-const { updateRow } = gridSlice.actions;
+const { updateRow, incrementRow } = gridSlice.actions;
 const gridReducer = gridSlice.reducer;
 
-export { gridSlice, updateRow, gridReducer };
+export { gridSlice, updateRow, gridReducer, incrementRow };
 export type { GridState };

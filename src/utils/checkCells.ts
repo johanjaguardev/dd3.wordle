@@ -1,6 +1,6 @@
 import type { TCell } from "../types/Cell.t";
 import { updateCell } from "../store/cellsSlice";
-import type { RootState } from "./../store/gridSlice";
+import type { RootState } from "./../store/store";
 import { useDispatch } from "react-redux";
 
 const checkCells = (
@@ -36,6 +36,7 @@ const checkCells = (
     dispatch(updateCell(keyToUpdate));
     return cellToUpdate;
   });
+
   console.log(
     `palabra a adivinar: ${randomWord} - palabra de usuario: ${userWord}`
   );

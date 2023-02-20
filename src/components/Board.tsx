@@ -5,7 +5,7 @@ import { Keyboard } from "./Keyboard";
 import "./../sass/Board.scss";
 import { WORDLIST } from "../data/WORDLIST";
 import type { RootState } from "../store/store";
-import { updateRow } from "./../store/gridSlice";
+import { incrementRow, updateRow } from "./../store/gridSlice";
 import { TCell } from "../types/Cell.t";
 import { checkCells } from "../utils/checkCells";
 import { Row } from "./Row";
@@ -82,18 +82,18 @@ const Board = () => {
     };
 
     updatedCells[cellIndex] = cellState;
-
     dispatch(
       updateRow({
         index: userInput.count === 5 ? cellIndex - 1 : cellIndex,
         cells:
           userInput.count === 5
-            ? checkCells(grid, keys, dispatch, randomWord, [
-                ...grid.rows[grid.current].cells,
-              ])
+            ? checkCells(grid, keys, dispatch, randomWord, [...updatedCells])
             : updatedCells,
       })
     );
+    if (userInput.count === 5) {
+      dispatch(incrementRow());
+    }
   }, [userInput]);
 
   return (
