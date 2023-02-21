@@ -63,7 +63,7 @@ const gridSlice = createSlice({
     incrementRow: (state) => {
       return {
         ...state,
-        current: state.current + 1,
+        current: state.current <= 4 ? state.current + 1 : state.current,
       };
     },
   },

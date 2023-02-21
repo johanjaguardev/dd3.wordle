@@ -10,21 +10,34 @@ const checkCells = (
   randomWord: string,
   updatedCells: TCell[]
 ): TCell[] => {
-  let userWord = "";
+  let copyWord = [...randomWord];
+
   let newCells = updatedCells.map((obj, index) => {
     let cellToUpdate: TCell = grid.rows[grid.current].cells[index];
-    userWord += obj.key;
-    cellToUpdate = {
-      index: obj.index + index,
-      key: obj.key,
-      row: -1,
-      status:
-        obj.key === randomWord[index]
-          ? "ok"
-          : randomWord.includes(obj.key)
-          ? "exist"
-          : "not exist",
-    };
+    if (obj.key === randomWord[index]) {
+      cellToUpdate = {
+        index: obj.index + index,
+        key: obj.key,
+        row: -1,
+        status: "ok",
+      };
+      copyWord[index] = "-";
+    } else if (copyWord.indexOf(obj.key) > 0) {
+      cellToUpdate = {
+        index: obj.index + index,
+        key: obj.key,
+        row: -1,
+        status: "exist",
+      };
+      copyWord[index] = "-";
+    } else {
+      cellToUpdate = {
+        index: obj.index + index,
+        key: obj.key,
+        row: -1,
+        status: "not exist",
+      };
+    }
 
     let keyToUpdate = { ...keys.filter((k: TCell) => k.key === obj.key)[0] };
     keyToUpdate.status =
@@ -37,9 +50,16 @@ const checkCells = (
     return cellToUpdate;
   });
 
-  console.log(
-    `palabra a adivinar: ${randomWord} - palabra de usuario: ${userWord}`
-  );
+  // let keyToUpdate = { ...keys.filter((k: TCell) => k.key === obj.key)[0] };
+  // keyToUpdate.status =
+  //   cellToUpdate.status === "ok"
+  //     ? "ok"
+  //     : cellToUpdate.status === "exist" && keyToUpdate.status !== "ok"
+  //     ? "exist"
+  //     : "not exist";
+  // dispatch(updateCell(keyToUpdate));
+
+  console.log(newCells, randomWord);
   return newCells;
 };
 

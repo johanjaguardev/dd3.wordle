@@ -12,6 +12,7 @@ import { Row } from "./Row";
 import { KeyboardListener } from "./KeyboardListener";
 import { Instructions } from "./Instructions";
 import { Results } from "./Results";
+import { current } from "@reduxjs/toolkit";
 
 const Board = () => {
   const grid = useSelector((state: RootState) => state.grid);
@@ -58,45 +59,50 @@ const Board = () => {
     setRandomWord(
       WORDLIST[Math.floor(Math.random() * WORDLIST.length)].toUpperCase()
     );
+    console.log(randomWord);
   }, []);
 
   useEffect(() => {
     console.log(userInput);
     const cellIndex =
       userInput.key !== "BACKSPACE" ? userInput.count - 1 : userInput.count;
-    let updatedCells: TCell[] = [...grid.rows[grid.current].cells];
-    let cellState =
-      grid.rows[grid.current].cells[cellIndex] === undefined
-        ? ({
-            index: -1,
-            key: userInput.key !== "BACKSPACE" ? userInput.key : "-",
-            row: -1,
-            status: "not set",
-          } as TCell)
-        : grid.rows[grid.current].cells[cellIndex];
-    cellState = {
-      index: cellState.index + cellIndex,
-      key: userInput.key !== "BACKSPACE" ? userInput.key : "-",
-      row: -1,
-      status: cellState.status,
-    };
+    if (grid.current <= 4) {
+      let updatedCells: TCell[] =
+        [...grid.rows[grid.current].cells] || undefined;
 
-    updatedCells[cellIndex] = cellState;
-    dispatch(
-      updateRow({
-        index: userInput.count === 5 ? cellIndex - 1 : cellIndex,
-        cells:
-          userInput.count === 5
-            ? checkCells(grid, keys, dispatch, randomWord, [...updatedCells])
-            : updatedCells,
-      })
-    );
-    if (userInput.count === 5) {
-      setUserInput({
-        count: 0,
-        key: "-",
-      });
-      dispatch(incrementRow());
+      let cellState =
+        grid.rows[grid.current].cells[cellIndex] === undefined
+          ? ({
+              index: -1,
+              key: userInput.key !== "BACKSPACE" ? userInput.key : "-",
+              row: -1,
+              status: "not set",
+            } as TCell)
+          : grid.rows[grid.current].cells[cellIndex];
+      cellState = {
+        index: cellState.index + cellIndex,
+        key: userInput.key !== "BACKSPACE" ? userInput.key : "-",
+        row: -1,
+        status: cellState.status,
+      };
+
+      updatedCells[cellIndex] = cellState;
+      dispatch(
+        updateRow({
+          index: userInput.count === 5 ? cellIndex - 1 : cellIndex,
+          cells:
+            userInput.count === 5
+              ? checkCells(grid, keys, dispatch, randomWord, [...updatedCells])
+              : updatedCells,
+        })
+      );
+      if (userInput.count === 5) {
+        setUserInput({
+          count: 0,
+          key: "-",
+        });
+        dispatch(incrementRow());
+      }
     }
   }, [userInput]);
 
