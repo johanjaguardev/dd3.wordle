@@ -49,17 +49,6 @@ const checkCells = (
     dispatch(updateCell(keyToUpdate));
     return cellToUpdate;
   });
-
-  // let keyToUpdate = { ...keys.filter((k: TCell) => k.key === obj.key)[0] };
-  // keyToUpdate.status =
-  //   cellToUpdate.status === "ok"
-  //     ? "ok"
-  //     : cellToUpdate.status === "exist" && keyToUpdate.status !== "ok"
-  //     ? "exist"
-  //     : "not exist";
-  // dispatch(updateCell(keyToUpdate));
-
-  console.log(newCells, randomWord);
   return newCells;
 };
 

@@ -32,7 +32,6 @@ const Header = () => {
         src={`${themeChoice ? barsSVG : barsDarkSVG}`}
         alt="Redirect to Results"
         onClick={() => {
-          console.log("jonhny is here");
           dispatch(toggleResults());
         }}
       />
@@ -41,7 +40,6 @@ const Header = () => {
         src={`${themeChoice ? daySVG : nightSVG}`}
         alt="Its confifuged Light Theme, Change it to Dark Theme"
         onClick={() => {
-          console.log("jonhny is here");
           dispatch(toggleTheme());
         }}
       />

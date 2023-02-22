@@ -47,23 +47,13 @@ const Board = () => {
     }
   };
 
-  const handleResulsClick = () => {
-    console.log("results");
-  };
-
-  const handleInstructionsClick = () => {
-    console.log("instructions");
-  };
-
   useEffect(() => {
     setRandomWord(
       WORDLIST[Math.floor(Math.random() * WORDLIST.length)].toUpperCase()
     );
-    console.log(randomWord);
   }, []);
 
   useEffect(() => {
-    console.log(userInput);
     const cellIndex =
       userInput.key !== "BACKSPACE" ? userInput.count - 1 : userInput.count;
     if (grid.current <= 4) {

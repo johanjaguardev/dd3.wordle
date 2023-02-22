@@ -13,7 +13,6 @@ const windowsSlice = createSlice({
   initialState,
   reducers: {
     toggleResults: (state) => {
-      console.log(state);
       const newWindowState: TWindow = {
         ...state,
         board: false,
@@ -23,7 +22,6 @@ const windowsSlice = createSlice({
       return newWindowState;
     },
     toggleBoard: (state) => {
-      console.log(state);
       const newWindowState: TWindow = {
         ...state,
         board: true,
@@ -33,7 +31,6 @@ const windowsSlice = createSlice({
       return newWindowState;
     },
     toggleInstructions: (state) => {
-      console.log(state);
       const newWindowState: TWindow = {
         ...state,
         board: false,
