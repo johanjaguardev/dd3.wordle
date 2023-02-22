@@ -2,7 +2,7 @@ import "./App.scss";
 import { Board } from "./components/Board";
 import { useEffect } from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
-import { RootState } from "./store/themeSlice";
+import { RootState } from "./store/store";
 
 const App: React.FC = () => {
   const themeChoice = useSelector((state: RootState) => state.theme);
