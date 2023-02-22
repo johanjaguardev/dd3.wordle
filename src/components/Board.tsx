@@ -12,6 +12,7 @@ import { Row } from "./Row";
 import { KeyboardListener } from "./KeyboardListener";
 import { Instructions } from "./Instructions";
 import { Results } from "./Results";
+import { toggleBoard, toggleInstructions } from "../store/windowsSlice";
 
 const Board = () => {
   const grid = useSelector((state: RootState) => state.grid);
@@ -91,15 +92,14 @@ const Board = () => {
     }
   }, [userInput]);
 
-  const [hasVisitedBefore, setHasVisitedBefore] = useState(false);
-
   useEffect(() => {
     const firstVisitTimestamp = localStorage.getItem("firstVisitTimestamp");
 
     if (firstVisitTimestamp) {
-      setHasVisitedBefore(true);
+      dispatch(toggleBoard());
     } else {
       localStorage.setItem("firstVisitTimestamp", Date.now().toString());
+      dispatch(toggleInstructions());
     }
   }, []);
 
