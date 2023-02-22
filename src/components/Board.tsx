@@ -91,6 +91,18 @@ const Board = () => {
     }
   }, [userInput]);
 
+  const [hasVisitedBefore, setHasVisitedBefore] = useState(false);
+
+  useEffect(() => {
+    const firstVisitTimestamp = localStorage.getItem("firstVisitTimestamp");
+
+    if (firstVisitTimestamp) {
+      setHasVisitedBefore(true);
+    } else {
+      localStorage.setItem("firstVisitTimestamp", Date.now().toString());
+    }
+  }, []);
+
   return (
     <div className={`board ${themeChoice ? "light" : "dark"}`}>
       <Fragment>
