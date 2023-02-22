@@ -2,7 +2,7 @@ import "./../sass/Keys.scss";
 import backspaceSVG from "./../assets/backspace.svg";
 import backspaceWhiteSVG from "./../assets/backspace-white.svg";
 import { TCell } from "../types/Cell.t";
-import { RootState } from "./../store/cellsSlice";
+import { RootState } from "./../store/store";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 type Props = {
   handleButton: (key: string) => void;
