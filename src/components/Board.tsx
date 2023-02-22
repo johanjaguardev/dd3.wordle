@@ -1,4 +1,4 @@
-import { useEffect, useId, useState, Fragment } from "react";
+import { useEffect, useId, useState, Fragment, useMemo } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Header } from "./Header";
 import { Keyboard } from "./Keyboard";
@@ -12,16 +12,13 @@ import { Row } from "./Row";
 import { KeyboardListener } from "./KeyboardListener";
 import { Instructions } from "./Instructions";
 import { Results } from "./Results";
-import { current } from "@reduxjs/toolkit";
 
 const Board = () => {
   const grid = useSelector((state: RootState) => state.grid);
   const keys = useSelector((state: RootState) => state.cells.cells);
   const themeChoice = useSelector((state: RootState) => state.theme);
-  const windowState = useSelector((state: RootState) => state.window);
-
   const dispatch = useDispatch();
-  const [randomWord, setRandomWord] = useState("");
+
   const [userInput, setUserInput] = useState({
     key: "-",
     count: 0,
@@ -47,11 +44,8 @@ const Board = () => {
     }
   };
 
-  useEffect(() => {
-    console.log("checking how many times is rendered this");
-    setRandomWord(
-      WORDLIST[Math.floor(Math.random() * WORDLIST.length)].toUpperCase()
-    );
+  const randomWord = useMemo(() => {
+    return WORDLIST[Math.floor(Math.random() * WORDLIST.length)].toUpperCase();
   }, []);
 
   useEffect(() => {
