@@ -48,6 +48,7 @@ const Board = () => {
   };
 
   useEffect(() => {
+    console.log("checking how many times is rendered this");
     setRandomWord(
       WORDLIST[Math.floor(Math.random() * WORDLIST.length)].toUpperCase()
     );
